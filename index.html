@@ -18,6 +18,7 @@
         padding: 0;
         box-sizing: border-box;
         font-family: "Poppins", sans-serif;
+        transition: background-color 0.3s, color 0.3s;
       }
 
       :root {
@@ -33,6 +34,18 @@
           var(--primary-color),
           var(--secondary-color)
         );
+        --shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        --shadow-hover: 0 15px 35px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Dark Mode Variables */
+      .dark-mode {
+        --light-color: #0f172a;
+        --dark-color: #f8fafc;
+        --text-color: #cbd5e1;
+        --card-bg: #1e293b;
+        --shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        --shadow-hover: 0 15px 35px rgba(0, 0, 0, 0.3);
       }
 
       body {
@@ -40,6 +53,7 @@
         color: var(--text-color);
         line-height: 1.6;
         overflow-x: hidden;
+        transition: background-color 0.3s, color 0.3s;
       }
 
       .container {
@@ -130,6 +144,26 @@
       .profile-img:hover {
         transform: scale(1.05);
         box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+      }
+
+      /* Theme Toggle */
+      .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1001;
+        background: var(--card-bg);
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: var(--shadow);
+        border: none;
+        color: var(--text-color);
+        font-size: 1.2rem;
       }
 
       /* Navigation */
@@ -236,13 +270,13 @@
         position: relative;
         border-radius: 20px;
         overflow: hidden;
-        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        box-shadow: var(--shadow);
         transition: all 0.5s ease;
       }
 
       .about-image:hover {
         transform: translateY(-10px);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        box-shadow: var(--shadow-hover);
       }
 
       .about-image img {
@@ -262,14 +296,14 @@
         background-color: var(--card-bg);
         padding: 2rem;
         border-radius: 15px;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        box-shadow: var(--shadow);
         transition: all 0.4s ease;
         border: 1px solid rgba(0, 0, 0, 0.05);
       }
 
       .skill-category:hover {
         transform: translateY(-5px);
-        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        box-shadow: var(--shadow-hover);
       }
 
       .skill-category h3 {
@@ -315,12 +349,28 @@
         border-radius: 8px;
       }
 
+      /* Skill Progress Bars */
+      .skill-progress {
+        margin-top: 0.5rem;
+        height: 8px;
+        background-color: var(--light-color);
+        border-radius: 4px;
+        overflow: hidden;
+      }
+
+      .skill-progress-bar {
+        height: 100%;
+        background: var(--gradient);
+        border-radius: 4px;
+        transition: width 1s ease-in-out;
+      }
+
       /* Experience Section */
       .experience-content {
         background-color: var(--card-bg);
         padding: 2.5rem;
         border-radius: 15px;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        box-shadow: var(--shadow);
         margin-bottom: 2rem;
         transition: all 0.4s ease;
         border-left: 5px solid var(--primary-color);
@@ -328,7 +378,7 @@
 
       .experience-content:hover {
         transform: translateY(-5px);
-        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        box-shadow: var(--shadow-hover);
       }
 
       .company {
@@ -345,6 +395,74 @@
         font-weight: 500;
       }
 
+      /* Timeline for Experience */
+      .timeline {
+        position: relative;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .timeline::after {
+        content: "";
+        position: absolute;
+        width: 6px;
+        background-color: var(--primary-color);
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        margin-left: -3px;
+        border-radius: 3px;
+      }
+
+      .timeline-item {
+        padding: 10px 40px;
+        position: relative;
+        width: 50%;
+        box-sizing: border-box;
+      }
+
+      .timeline-item:nth-child(odd) {
+        left: 0;
+      }
+
+      .timeline-item:nth-child(even) {
+        left: 50%;
+      }
+
+      .timeline-content {
+        padding: 20px 30px;
+        background-color: var(--card-bg);
+        position: relative;
+        border-radius: 10px;
+        box-shadow: var(--shadow);
+      }
+
+      .timeline-item:nth-child(odd) .timeline-content::after {
+        content: "";
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        right: -10px;
+        background-color: var(--card-bg);
+        top: 20px;
+        border-radius: 50%;
+        z-index: 1;
+        border: 4px solid var(--primary-color);
+      }
+
+      .timeline-item:nth-child(even) .timeline-content::after {
+        content: "";
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        left: -10px;
+        background-color: var(--card-bg);
+        top: 20px;
+        border-radius: 50%;
+        z-index: 1;
+        border: 4px solid var(--primary-color);
+      }
+
       /* Projects Section */
       .projects-grid {
         display: grid;
@@ -356,7 +474,7 @@
         background-color: var(--card-bg);
         border-radius: 15px;
         overflow: hidden;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.07);
+        box-shadow: var(--shadow);
         transition: all 0.4s ease;
         display: flex;
         flex-direction: column;
@@ -364,7 +482,7 @@
 
       .project-card:hover {
         transform: translateY(-8px);
-        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        box-shadow: var(--shadow-hover);
       }
 
       .project-img {
@@ -430,30 +548,6 @@
         transform: scale(1.05);
       }
 
-      .project-links {
-        display: flex;
-        gap: 1rem;
-        margin-top: 1rem;
-      }
-
-      .project-link {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.5rem 1rem;
-        background: var(--gradient);
-        color: white;
-        text-decoration: none;
-        border-radius: 5px;
-        font-size: 0.9rem;
-        transition: all 0.3s ease;
-      }
-
-      .project-link:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-      }
-
       /* Contact Section */
       .contact-grid {
         display: grid;
@@ -465,7 +559,7 @@
         background-color: var(--card-bg);
         padding: 2.5rem;
         border-radius: 15px;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        box-shadow: var(--shadow);
         height: fit-content;
       }
 
@@ -539,7 +633,7 @@
         background-color: var(--card-bg);
         padding: 2.5rem;
         border-radius: 15px;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        box-shadow: var(--shadow);
       }
 
       .contact-form-card h3 {
@@ -569,6 +663,8 @@
         border-radius: 10px;
         font-size: 1rem;
         transition: all 0.3s ease;
+        background-color: var(--light-color);
+        color: var(--text-color);
       }
 
       .form-control:focus {
@@ -609,14 +705,12 @@
         box-shadow: none;
       }
 
-      /* Form validation styles */
       .error-message {
         color: #e53e3e;
         font-size: 0.85rem;
         margin-top: 0.5rem;
         display: none;
       }
-
       .form-control.error {
         border-color: #e53e3e;
       }
@@ -661,12 +755,17 @@
         }
       }
 
-      /* Footer */
+      /* Footer - Fixed for Dark Mode */
       footer {
-        background-color: var(--dark-color);
+        background-color: #0f172a; /* Darker background for better contrast */
         color: white;
         padding: 3rem 0;
         text-align: center;
+      }
+
+      .dark-mode footer {
+        background-color: #0a0f1c; /* Even darker for dark mode */
+        color: #e2e8f0; /* Lighter text for better contrast */
       }
 
       .footer-content {
@@ -724,6 +823,33 @@
         animation: float 5s ease-in-out infinite;
       }
 
+      /* Back to Top Button */
+      .back-to-top {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        background: var(--gradient);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        cursor: pointer;
+        box-shadow: var(--shadow);
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+      }
+
+      .back-to-top.show {
+        opacity: 1;
+        visibility: visible;
+      }
+
       /* Responsive Design */
       @media (max-width: 992px) {
         .about-content,
@@ -733,6 +859,25 @@
 
         .projects-grid {
           grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        }
+
+        .timeline::after {
+          left: 31px;
+        }
+
+        .timeline-item {
+          width: 100%;
+          padding-left: 70px;
+          padding-right: 25px;
+        }
+
+        .timeline-item:nth-child(even) {
+          left: 0;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content::after,
+        .timeline-item:nth-child(even) .timeline-content::after {
+          left: 18px;
         }
       }
 
@@ -764,10 +909,22 @@
         .profile-info h1 {
           font-size: 2.2rem;
         }
+
+        .theme-toggle {
+          top: 10px;
+          right: 10px;
+          width: 40px;
+          height: 40px;
+        }
       }
     </style>
   </head>
   <body>
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" id="theme-toggle">
+      <i class="fas fa-moon"></i>
+    </button>
+
     <!-- Header Section -->
     <header>
       <div class="container header-content">
@@ -856,28 +1013,88 @@
           <div class="skill-category">
             <h3><i class="fab fa-angular"></i> Frontend Development</h3>
             <ul class="skill-list">
-              <li><i class="fab fa-angular"></i> Angular</li>
-              <li><i class="fab fa-react"></i> ReactJS</li>
-              <li><i class="fab fa-js-square"></i> JavaScript</li>
-              <li><i class="fab fa-html5"></i> HTML5</li>
-              <li><i class="fab fa-css3-alt"></i> CSS3</li>
+              <li>
+                <i class="fab fa-angular"></i> Angular
+                <div class="skill-progress">
+                  <div class="skill-progress-bar" data-width="90"></div>
+                </div>
+              </li>
+              <li>
+                <i class="fab fa-react"></i> ReactJS
+                <div class="skill-progress">
+                  <div class="skill-progress-bar" data-width="85"></div>
+                </div>
+              </li>
+              <li>
+                <i class="fab fa-js-square"></i> JavaScript
+                <div class="skill-progress">
+                  <div class="skill-progress-bar" data-width="95"></div>
+                </div>
+              </li>
+              <li>
+                <i class="fab fa-html5"></i> HTML5
+                <div class="skill-progress">
+                  <div class="skill-progress-bar" data-width="95"></div>
+                </div>
+              </li>
+              <li>
+                <i class="fab fa-css3-alt"></i> CSS3
+                <div class="skill-progress">
+                  <div class="skill-progress-bar" data-width="90"></div>
+                </div>
+              </li>
             </ul>
           </div>
           <div class="skill-category">
             <h3><i class="fas fa-server"></i> Backend Development</h3>
             <ul class="skill-list">
-              <li><i class="fab fa-microsoft"></i> ASP.NET Core</li>
-              <li><i class="fas fa-database"></i> SQL Server</li>
-              <li><i class="fas fa-code"></i> RESTful APIs</li>
+              <li>
+                <i class="fab fa-microsoft"></i> ASP.NET Core
+                <div class="skill-progress">
+                  <div class="skill-progress-bar" data-width="85"></div>
+                </div>
+              </li>
+              <li>
+                <i class="fas fa-database"></i> SQL Server
+                <div class="skill-progress">
+                  <div class="skill-progress-bar" data-width="80"></div>
+                </div>
+              </li>
+              <li>
+                <i class="fas fa-code"></i> RESTful APIs
+                <div class="skill-progress">
+                  <div class="skill-progress-bar" data-width="90"></div>
+                </div>
+              </li>
             </ul>
           </div>
           <div class="skill-category">
             <h3><i class="fas fa-tools"></i> Tools & Technologies</h3>
             <ul class="skill-list">
-              <li><i class="fab fa-git-alt"></i> Git</li>
-              <li><i class="fab fa-npm"></i> npm</li>
-              <li><i class="fas fa-code-branch"></i> Agile Methodologies</li>
-              <li><i class="fas fa-mobile-alt"></i> Responsive Design</li>
+              <li>
+                <i class="fab fa-git-alt"></i> Git
+                <div class="skill-progress">
+                  <div class="skill-progress-bar" data-width="85"></div>
+                </div>
+              </li>
+              <li>
+                <i class="fab fa-npm"></i> npm
+                <div class="skill-progress">
+                  <div class="skill-progress-bar" data-width="80"></div>
+                </div>
+              </li>
+              <li>
+                <i class="fas fa-code-branch"></i> Agile Methodologies
+                <div class="skill-progress">
+                  <div class="skill-progress-bar" data-width="75"></div>
+                </div>
+              </li>
+              <li>
+                <i class="fas fa-mobile-alt"></i> Responsive Design
+                <div class="skill-progress">
+                  <div class="skill-progress-bar" data-width="90"></div>
+                </div>
+              </li>
             </ul>
           </div>
         </div>
@@ -888,20 +1105,39 @@
     <section id="experience">
       <div class="container">
         <h2 class="section-title">Experience & Education</h2>
-        <div class="experience-content">
-          <h3 class="company">SyncGlob Private Limited</h3>
-          <p class="education">D.A.V. College, Abohar</p>
-          <p>
-            As a Full Stack Developer at SyncGlob, I worked on developing and
-            maintaining web applications using Angular, ReactJS, and ASP.NET
-            Core. My responsibilities included designing database structures,
-            creating RESTful APIs, and implementing responsive user interfaces.
-          </p>
-          <p>
-            I collaborated with cross-functional teams to deliver high-quality
-            software solutions that met client requirements and business
-            objectives.
-          </p>
+
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <h3 class="company">SyncGlob Private Limited</h3>
+              <p class="education">Full Stack Developer | 2021 - Present</p>
+              <p>
+                As a Full Stack Developer at SyncGlob, I worked on developing
+                and maintaining web applications using Angular, ReactJS, and
+                ASP.NET Core. My responsibilities included designing database
+                structures, creating RESTful APIs, and implementing responsive
+                user interfaces.
+              </p>
+              <p>
+                I collaborated with cross-functional teams to deliver
+                high-quality software solutions that met client requirements and
+                business objectives.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <h3 class="company">D.A.V. College, Abohar</h3>
+              <p class="education">Bachelor's Degree | 2017 - 2021</p>
+              <p>
+                Completed my Bachelor's degree with a focus on computer science
+                and software development. During my studies, I developed a
+                strong foundation in programming principles, algorithms, and
+                software engineering practices.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -918,19 +1154,15 @@
             <div class="project-info">
               <h3>ISOnline</h3>
               <p>
-                A comprehensive online information system platform built with Angular and ASP.NET Core, 
-                featuring real-time data processing, user management, and advanced reporting capabilities.
+                A comprehensive online information system platform built with
+                Angular and ASP.NET Core, featuring real-time data processing,
+                user management, and advanced reporting capabilities.
               </p>
               <div class="project-tags">
                 <span class="project-tag">Angular</span>
                 <span class="project-tag">ASP.NET Core</span>
                 <span class="project-tag">SQL Server</span>
                 <span class="project-tag">REST API</span>
-              </div>
-              <div class="project-links">
-                <a href="#" class="project-link" target="_blank">
-                  <i class="fas fa-external-link-alt"></i> Live Demo
-                </a>
               </div>
             </div>
           </div>
@@ -941,19 +1173,15 @@
             <div class="project-info">
               <h3>Eventopedia</h3>
               <p>
-                An event management platform that allows users to create, manage, and discover events. 
-                Includes features like ticket booking, event promotion, and attendee management.
+                An event management platform that allows users to create,
+                manage, and discover events. Includes features like ticket
+                booking, event promotion, and attendee management.
               </p>
               <div class="project-tags">
                 <span class="project-tag">React</span>
                 <span class="project-tag">Node.js</span>
                 <span class="project-tag">MongoDB</span>
                 <span class="project-tag">Payment Gateway</span>
-              </div>
-              <div class="project-links">
-                <a href="#" class="project-link" target="_blank">
-                  <i class="fas fa-external-link-alt"></i> Live Demo
-                </a>
               </div>
             </div>
           </div>
@@ -964,19 +1192,15 @@
             <div class="project-info">
               <h3>Living Menu</h3>
               <p>
-                A digital menu solution for restaurants with real-time updates, 
-                online ordering system, table reservation, and customer feedback features.
+                A digital menu solution for restaurants with real-time updates,
+                online ordering system, table reservation, and customer feedback
+                features.
               </p>
               <div class="project-tags">
                 <span class="project-tag">Angular</span>
                 <span class="project-tag">ASP.NET Core</span>
                 <span class="project-tag">SQL Server</span>
                 <span class="project-tag">Real-time Updates</span>
-              </div>
-              <div class="project-links">
-                <a href="#" class="project-link" target="_blank">
-                  <i class="fas fa-external-link-alt"></i> Live Demo
-                </a>
               </div>
             </div>
           </div>
@@ -1037,26 +1261,33 @@
               <div class="form-group">
                 <label for="name">Your Name</label>
                 <input type="text" id="name" class="form-control" required />
-                <div class="error-message" id="name-error">Please enter your name</div>
+                <div class="error-message" id="name-error">
+                  Please enter your name
+                </div>
               </div>
               <div class="form-group">
                 <label for="email">Your Email</label>
                 <input type="email" id="email" class="form-control" required />
-                <div class="error-message" id="email-error">Please enter a valid email address</div>
+                <div class="error-message" id="email-error">
+                  Please enter a valid email address
+                </div>
               </div>
               <div class="form-group">
                 <label for="message">Message</label>
                 <textarea id="message" class="form-control" required></textarea>
-                <div class="error-message" id="message-error">Please enter your message</div>
+                <div class="error-message" id="message-error">
+                  Please enter your message
+                </div>
               </div>
               <div class="success-message" id="success-message">
                 Thank you! Your message has been sent successfully.
               </div>
               <div class="error-message-global" id="error-message">
-                Sorry, there was an error sending your message. Please try again later.
+                Sorry, there was an error sending your message. Please try again
+                later.
               </div>
               <button type="submit" class="btn" id="submit-btn">
-                <i class="fas fa-paper-plane"></i> 
+                <i class="fas fa-paper-plane"></i>
                 <span id="btn-text">Send Message</span>
                 <div class="spinner" id="spinner"></div>
               </button>
@@ -1086,7 +1317,39 @@
       </div>
     </footer>
 
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="back-to-top">
+      <i class="fas fa-chevron-up"></i>
+    </div>
+
     <script>
+      // Theme Toggle
+      const themeToggle = document.getElementById("theme-toggle");
+      const themeIcon = themeToggle.querySelector("i");
+
+      // Check for saved theme preference or default to light
+      const currentTheme = localStorage.getItem("theme") || "light";
+
+      if (currentTheme === "dark") {
+        document.body.classList.add("dark-mode");
+        themeIcon.classList.remove("fa-moon");
+        themeIcon.classList.add("fa-sun");
+      }
+
+      themeToggle.addEventListener("click", () => {
+        document.body.classList.toggle("dark-mode");
+
+        if (document.body.classList.contains("dark-mode")) {
+          themeIcon.classList.remove("fa-moon");
+          themeIcon.classList.add("fa-sun");
+          localStorage.setItem("theme", "dark");
+        } else {
+          themeIcon.classList.remove("fa-sun");
+          themeIcon.classList.add("fa-moon");
+          localStorage.setItem("theme", "light");
+        }
+      });
+
       // Smooth scrolling for navigation links
       document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
         anchor.addEventListener("click", function (e) {
@@ -1116,116 +1379,141 @@
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add("animate");
+
+            // Animate skill progress bars when they come into view
+            if (entry.target.classList.contains("skill-progress-bar")) {
+              const width = entry.target.getAttribute("data-width");
+              entry.target.style.width = width + "%";
+            }
           }
         });
       }, observerOptions);
 
       document
-        .querySelectorAll(".skill-category, .project-card, .experience-content")
+        .querySelectorAll(
+          ".skill-category, .project-card, .experience-content, .skill-progress-bar"
+        )
         .forEach((el) => {
           observer.observe(el);
         });
 
+      // Back to Top Button
+      const backToTopButton = document.getElementById("back-to-top");
+
+      window.addEventListener("scroll", () => {
+        if (window.pageYOffset > 300) {
+          backToTopButton.classList.add("show");
+        } else {
+          backToTopButton.classList.remove("show");
+        }
+      });
+
+      backToTopButton.addEventListener("click", () => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      });
+
       // Contact form functionality
-      const contactForm = document.getElementById('contact-form');
-      const submitBtn = document.getElementById('submit-btn');
-      const btnText = document.getElementById('btn-text');
-      const spinner = document.getElementById('spinner');
-      const successMessage = document.getElementById('success-message');
-      const errorMessage = document.getElementById('error-message');
+      const contactForm = document.getElementById("contact-form");
+      const submitBtn = document.getElementById("submit-btn");
+      const btnText = document.getElementById("btn-text");
+      const spinner = document.getElementById("spinner");
+      const successMessage = document.getElementById("success-message");
+      const errorMessage = document.getElementById("error-message");
 
       // Form validation
       function validateForm() {
         let isValid = true;
-        
+
         // Name validation
-        const name = document.getElementById('name');
-        const nameError = document.getElementById('name-error');
-        if (name.value.trim() === '') {
-          name.classList.add('error');
-          nameError.style.display = 'block';
+        const name = document.getElementById("name");
+        const nameError = document.getElementById("name-error");
+        if (name.value.trim() === "") {
+          name.classList.add("error");
+          nameError.style.display = "block";
           isValid = false;
         } else {
-          name.classList.remove('error');
-          name.classList.add('success');
-          nameError.style.display = 'none';
+          name.classList.remove("error");
+          name.classList.add("success");
+          nameError.style.display = "none";
         }
-        
+
         // Email validation
-        const email = document.getElementById('email');
-        const emailError = document.getElementById('email-error');
+        const email = document.getElementById("email");
+        const emailError = document.getElementById("email-error");
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email.value.trim())) {
-          email.classList.add('error');
-          emailError.style.display = 'block';
+          email.classList.add("error");
+          emailError.style.display = "block";
           isValid = false;
         } else {
-          email.classList.remove('error');
-          email.classList.add('success');
-          emailError.style.display = 'none';
+          email.classList.remove("error");
+          email.classList.add("success");
+          emailError.style.display = "none";
         }
-        
+
         // Message validation
-        const message = document.getElementById('message');
-        const messageError = document.getElementById('message-error');
-        if (message.value.trim() === '') {
-          message.classList.add('error');
-          messageError.style.display = 'block';
+        const message = document.getElementById("message");
+        const messageError = document.getElementById("message-error");
+        if (message.value.trim() === "") {
+          message.classList.add("error");
+          messageError.style.display = "block";
           isValid = false;
         } else {
-          message.classList.remove('error');
-          message.classList.add('success');
-          messageError.style.display = 'none';
+          message.classList.remove("error");
+          message.classList.add("success");
+          messageError.style.display = "none";
         }
-        
+
         return isValid;
       }
 
       // Form submission
-      contactForm.addEventListener('submit', async (e) => {
+      contactForm.addEventListener("submit", async (e) => {
         e.preventDefault();
-        
+
         if (!validateForm()) {
           return;
         }
-        
+
         // Show loading state
         submitBtn.disabled = true;
-        btnText.textContent = 'Sending...';
-        spinner.style.display = 'inline-block';
-        successMessage.style.display = 'none';
-        errorMessage.style.display = 'none';
-        
+        btnText.textContent = "Sending...";
+        spinner.style.display = "inline-block";
+        successMessage.style.display = "none";
+        errorMessage.style.display = "none";
+
         try {
           // Simulate API call - replace with actual email service
-          await new Promise(resolve => setTimeout(resolve, 2000));
-          
+          await new Promise((resolve) => setTimeout(resolve, 2000));
+
           // Show success message
-          successMessage.style.display = 'block';
+          successMessage.style.display = "block";
           contactForm.reset();
-          
+
           // Reset form validation styles
-          document.querySelectorAll('.form-control').forEach(input => {
-            input.classList.remove('success');
+          document.querySelectorAll(".form-control").forEach((input) => {
+            input.classList.remove("success");
           });
-          
         } catch (error) {
           // Show error message
-          errorMessage.style.display = 'block';
+          errorMessage.style.display = "block";
         } finally {
           // Reset button state
           submitBtn.disabled = false;
-          btnText.textContent = 'Send Message';
-          spinner.style.display = 'none';
+          btnText.textContent = "Send Message";
+          spinner.style.display = "none";
         }
       });
 
       // Real-time validation
-      document.querySelectorAll('.form-control').forEach(input => {
-        input.addEventListener('input', function() {
-          if (this.value.trim() !== '') {
-            this.classList.remove('error');
-            this.nextElementSibling.style.display = 'none';
+      document.querySelectorAll(".form-control").forEach((input) => {
+        input.addEventListener("input", function () {
+          if (this.value.trim() !== "") {
+            this.classList.remove("error");
+            this.nextElementSibling.style.display = "none";
           }
         });
       });
