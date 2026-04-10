@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gajanand Verma — CV</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet"/>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+
+    :root {
+      --primary: #7c3aed;
+      --accent: #06b6d4;
+      --text: #1e293b;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --bg: #f8fafc;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* Print button — hidden on print */
+    .print-bar {
+      background: #1e1e3f;
+      padding: 0.8rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .print-bar span { color: rgba(255,255,255,0.7); font-size: 0.85rem; }
+
+    .print-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: linear-gradient(135deg, #7c3aed, #06b6d4);
+      color: white;
+      border: none;
+      padding: 0.6rem 1.4rem;
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .print-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+
+    .back-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: color 0.3s;
+    }
+
+    .back-btn:hover { color: white; }
+
+    /* CV Paper */
+    .cv-page {
+      max-width: 860px;
+      margin: 2rem auto;
+      background: white;
+      box-shadow: 0 4px 40px rgba(0,0,0,0.1);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    /* Header */
+    .cv-header {
+      background: linear-gradient(135deg, #0f172a, #1e1b4b);
+      padding: 2.5rem 3rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .cv-header-left h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: white;
+      letter-spacing: -1px;
+      margin-bottom: 0.3rem;
+    }
+
+    .cv-header-left .role {
+      font-family: 'Fira Code', monospace;
+      font-size: 1rem;
+      color: #a855f7;
+      margin-bottom: 1.2rem;
+    }
+
+    .cv-contacts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem 1.5rem;
+    }
+
+    .cv-contact-item {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.75);
+    }
+
+    .cv-contact-item i { color: #06b6d4; font-size: 0.75rem; }
+
+    .cv-photo {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: top center;
+      border: 3px solid rgba(124,58,237,0.6);
+      box-shadow: 0 0 0 4px rgba(124,58,237,0.2);
+    }
+
+    .cv-photo-fallback {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #7c3aed, #06b6d4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: 700;
+      color: white;
+      border: 3px solid rgba(255,255,255,0.3);
+    }
+
+    /* Body */
+    .cv-body {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+    }
+
+    /* Sidebar */
+    .cv-sidebar {
+      background: #f1f5f9;
+      padding: 2rem 1.5rem;
+      border-right: 1px solid var(--border);
+    }
+
+    /* Main Content */
+    .cv-main {
+      padding: 2rem 2.5rem;
+    }
+
+    /* Section */
+    .cv-section { margin-bottom: 2rem; }
+
+    .cv-section-title {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--primary);
+      margin-bottom: 0.8rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* Skills */
+    .skill-row {
+      margin-bottom: 0.9rem;
+    }
+
+    .skill-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 0.3rem;
+    }
+
+    .skill-label span:last-child {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.75rem;
+      color: var(--primary);
+    }
+
+    .skill-bar {
+      height: 5px;
+      background: var(--border);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .skill-fill {
+      height: 100%;
+      border-radius: 3px;
+      background: linear-gradient(90deg, #7c3aed, #06b6d4);
+    }
+
+    /* Tech chips */
+    .tech-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .tech-chip {
+      background: white;
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.25rem 0.65rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+
+    .tech-chip.highlight {
+      background: rgba(124,58,237,0.08);
+      border-color: rgba(124,58,237,0.3);
+      color: var(--primary);
+    }
+
+    /* Languages */
+    .lang-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.4rem 0;
+      font-size: 0.83rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .lang-row:last-child { border-bottom: none; }
+
+    .lang-level {
+      display: flex;
+      gap: 3px;
+    }
+
+    .lang-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--border);
+    }
+
+    .lang-dot.filled { background: var(--primary); }
+
+    /* Experience & Education */
+    .exp-item { margin-bottom: 1.5rem; }
+
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 0.2rem;
+    }
+
+    .exp-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .exp-date {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.75rem;
+      color: var(--accent);
+      white-space: nowrap;
+      margin-left: 1rem;
+    }
+
+    .exp-company {
+      font-size: 0.82rem;
+      color: var(--primary);
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+
+    .exp-desc {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .exp-desc ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .exp-desc ul li {
+      padding-left: 1rem;
+      position: relative;
+      margin-bottom: 0.3rem;
+    }
+
+    .exp-desc ul li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--primary);
+      font-size: 0.7rem;
+      top: 0.1rem;
+    }
+
+    /* Projects */
+    .project-item {
+      margin-bottom: 1.2rem;
+      padding: 1rem;
+      background: #f8fafc;
+      border-radius: 8px;
+      border-left: 3px solid var(--primary);
+    }
+
+    .project-name {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.3rem;
+    }
+
+    .project-tech {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.72rem;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+
+    .project-desc-text {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    /* ─── PRINT ─── */
+    @media print {
+      .print-bar { display: none !important; }
+      body { background: white; }
+      .cv-page { margin: 0; box-shadow: none; border-radius: 0; }
+      .cv-sidebar { background: #f8fafc; }
+      @page { margin: 0.5in; size: A4; }
+    }
+
+    @media (max-width: 640px) {
+      .cv-body { grid-template-columns: 1fr; }
+      .cv-header { grid-template-columns: 1fr; }
+      .cv-photo { display: none; }
+      .cv-main, .cv-sidebar { padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Print bar -->
+  <div class="print-bar">
+    <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Portfolio</a>
+    <span>Gajanand Verma — Curriculum Vitae</span>
+    <button class="print-btn" onclick="window.print()">
+      <i class="fas fa-download"></i> Download PDF
+    </button>
+  </div>
+
+  <div class="cv-page">
+
+    <!-- HEADER -->
+    <div class="cv-header">
+      <div class="cv-header-left">
+        <h1>Gajanand Verma</h1>
+        <div class="role">Full Stack Developer</div>
+        <div class="cv-contacts">
+          <div class="cv-contact-item"><i class="fas fa-envelope"></i> gajanandverma003@gmail.com</div>
+          <div class="cv-contact-item"><i class="fas fa-phone"></i> +91 7814716299</div>
+          <div class="cv-contact-item"><i class="fas fa-map-marker-alt"></i> Abohar, Punjab, India</div>
+          <div class="cv-contact-item"><i class="fab fa-github"></i> github.com/gajanandverma</div>
+          <div class="cv-contact-item"><i class="fab fa-linkedin"></i> linkedin.com/in/gajanandverma</div>
+        </div>
+      </div>
+      <img
+        src="hh.jpg"
+        alt="Gajanand Verma"
+        class="cv-photo"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
+      />
+      <div class="cv-photo-fallback" style="display:none">GV</div>
+    </div>
+
+    <!-- BODY -->
+    <div class="cv-body">
+
+      <!-- SIDEBAR -->
+      <div class="cv-sidebar">
+
+        <!-- Summary -->
+        <div class="cv-section">
+          <div class="cv-section-title"><i class="fas fa-user"></i> Profile</div>
+          <p style="font-size:0.82rem;color:var(--muted);line-height:1.7">
+            Passionate Full Stack Developer with <strong>4+ years</strong> of experience building production-grade web applications. Currently working on NestJS microservices with Docker containerization.
+          </p>
+        </div>
+
+        <!-- Skills -->
+        <div class="cv-section">
+          <div class="cv-section-title"><i class="fas fa-code"></i> Core Skills</div>
+
+          <div class="skill-row">
+            <div class="skill-label"><span>Angular</span><span>90%</span></div>
+            <div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-label"><span>React JS</span><span>85%</span></div>
+            <div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-label"><span>JavaScript / TypeScript</span><span>92%</span></div>
+            <div class="skill-bar"><div class="skill-fill" style="width:92%"></div></div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-label"><span>ASP.NET Core</span><span>85%</span></div>
+            <div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-label"><span>NestJS</span><span>78%</span></div>
+            <div class="skill-bar"><div class="skill-fill" style="width:78%"></div></div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-label"><span>Docker</span><span>80%</span></div>
+            <div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-label"><span>SQL Server</span><span>80%</span></div>
+            <div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-label"><span>REST APIs</span><span>90%</span></div>
+            <div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div>
+          </div>
+        </div>
+
+        <!-- Technologies -->
+        <div class="cv-section">
+          <div class="cv-section-title"><i class="fas fa-cubes"></i> Technologies</div>
+          <div class="tech-chips">
+            <span class="tech-chip highlight">NestJS</span>
+            <span class="tech-chip highlight">Microservices</span>
+            <span class="tech-chip highlight">Docker</span>
+            <span class="tech-chip">Angular</span>
+            <span class="tech-chip">React</span>
+            <span class="tech-chip">TypeScript</span>
+            <span class="tech-chip">ASP.NET Core</span>
+            <span class="tech-chip">SQL Server</span>
+            <span class="tech-chip">Git</span>
+            <span class="tech-chip">HTML5/CSS3</span>
+            <span class="tech-chip">Agile/Scrum</span>
+          </div>
+        </div>
+
+        <!-- Languages -->
+        <div class="cv-section">
+          <div class="cv-section-title"><i class="fas fa-language"></i> Languages</div>
+          <div class="lang-row">
+            <span style="font-size:0.82rem;font-weight:500">Hindi</span>
+            <div class="lang-level">
+              <div class="lang-dot filled"></div>
+              <div class="lang-dot filled"></div>
+              <div class="lang-dot filled"></div>
+              <div class="lang-dot filled"></div>
+              <div class="lang-dot filled"></div>
+            </div>
+          </div>
+          <div class="lang-row">
+            <span style="font-size:0.82rem;font-weight:500">English</span>
+            <div class="lang-level">
+              <div class="lang-dot filled"></div>
+              <div class="lang-dot filled"></div>
+              <div class="lang-dot filled"></div>
+              <div class="lang-dot filled"></div>
+              <div class="lang-dot"></div>
+            </div>
+          </div>
+          <div class="lang-row">
+            <span style="font-size:0.82rem;font-weight:500">Punjabi</span>
+            <div class="lang-level">
+              <div class="lang-dot filled"></div>
+              <div class="lang-dot filled"></div>
+              <div class="lang-dot filled"></div>
+              <div class="lang-dot"></div>
+              <div class="lang-dot"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- MAIN -->
+      <div class="cv-main">
+
+        <!-- Experience -->
+        <div class="cv-section">
+          <div class="cv-section-title"><i class="fas fa-briefcase"></i> Work Experience</div>
+
+          <div class="exp-item">
+            <div class="exp-header">
+              <div class="exp-title">Full Stack Developer</div>
+              <div class="exp-date">2021 — Present</div>
+            </div>
+            <div class="exp-company">SyncGlob Private Limited</div>
+            <div class="exp-desc">
+              <ul>
+                <li>Built and maintained scalable web apps using Angular, ReactJS, and ASP.NET Core</li>
+                <li>Working on <strong>NestJS-based Microservices</strong> architecture with <strong>Docker</strong> containerization</li>
+                <li>Designed relational database schemas and developed RESTful APIs</li>
+                <li>Implemented responsive UIs with focus on performance and UX</li>
+                <li>Collaborated in Agile/Scrum teams, participated in code reviews and sprint planning</li>
+                <li>Deployed applications and managed Docker Compose configurations</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Education -->
+        <div class="cv-section">
+          <div class="cv-section-title"><i class="fas fa-graduation-cap"></i> Education</div>
+
+          <div class="exp-item">
+            <div class="exp-header">
+              <div class="exp-title">Bachelor of Science — Computer Science</div>
+              <div class="exp-date">2017 — 2021</div>
+            </div>
+            <div class="exp-company">D.A.V. College, Abohar</div>
+            <div class="exp-desc">
+              Strong foundation in programming, data structures, algorithms, and software engineering principles. Graduated with distinction.
+            </div>
+          </div>
+        </div>
+
+        <!-- Projects -->
+        <div class="cv-section">
+          <div class="cv-section-title"><i class="fas fa-rocket"></i> Key Projects</div>
+
+          <div class="project-item">
+            <div class="project-name">ISOnline</div>
+            <div class="project-tech">Angular · ASP.NET Core · SQL Server · REST API</div>
+            <div class="project-desc-text">Comprehensive online information system with real-time data processing, user management, role-based access control, and advanced reporting capabilities.</div>
+          </div>
+
+          <div class="project-item">
+            <div class="project-name">Eventopedia</div>
+            <div class="project-tech">React · Node.js · MongoDB · Payment Gateway</div>
+            <div class="project-desc-text">Event management platform with ticket booking, event promotion, attendee management, and integrated payment gateway.</div>
+          </div>
+
+          <div class="project-item">
+            <div class="project-name">Living Menu</div>
+            <div class="project-tech">Angular · ASP.NET Core · SQL Server · Real-time</div>
+            <div class="project-desc-text">Digital restaurant menu with real-time updates, online ordering, table reservation system, and customer feedback module.</div>
+          </div>
+
+          <div class="project-item" style="border-left-color:var(--accent)">
+            <div class="project-name" style="color:var(--accent)">Digital Pharmacy Microservices</div>
+            <div class="project-tech" style="color:#7c3aed">NestJS · Microservices · Docker · Prisma · PostgreSQL</div>
+            <div class="project-desc-text">Microservices-based digital pharmacy backend — catalog service, order service, and API gateway. Containerized with Docker Compose.</div>
+          </div>
+        </div>
+
+        <!-- Achievements -->
+        <div class="cv-section">
+          <div class="cv-section-title"><i class="fas fa-star"></i> Highlights</div>
+          <div class="exp-desc">
+            <ul>
+              <li>4+ years of professional full stack development experience</li>
+              <li>Hands-on with NestJS microservices and Docker in production</li>
+              <li>Delivered 10+ complete web applications end-to-end</li>
+              <li>Strong in both frontend (Angular/React) and backend (ASP.NET/NestJS)</li>
+              <li>Open to full-time / freelance opportunities</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center;padding:1.5rem;color:#94a3b8;font-size:0.8rem">
+    Generated from <a href="index.html" style="color:#7c3aed;text-decoration:none">gajanandverma.dev</a>
+    · Press <kbd style="background:#e2e8f0;padding:0.1rem 0.4rem;border-radius:3px;font-size:0.75rem">Ctrl+P</kbd> → Save as PDF to download
+  </div>
+
+</body>
+</html>
