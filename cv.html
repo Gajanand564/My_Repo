@@ -361,6 +361,31 @@
       .cv-photo { display: none; }
       .cv-main, .cv-sidebar { padding: 1.5rem; }
     }
+
+    @media (max-width: 430px) {
+      .cv-page { margin: 0; border-radius: 0; }
+      .cv-header { padding: 1.5rem 1.2rem; }
+      .cv-header-left h1 { font-size: 1.6rem; }
+      .cv-header-left .role { font-size: 0.85rem; }
+      .cv-contacts { gap: 0.4rem 1rem; }
+      .cv-contact-item { font-size: 0.75rem; word-break: break-all; }
+      .cv-main, .cv-sidebar { padding: 1.2rem 1rem; }
+      .exp-title { font-size: 0.88rem; }
+      .exp-date { font-size: 0.7rem; margin-left: 0.5rem; white-space: normal; }
+      .exp-header { flex-wrap: wrap; gap: 0.2rem; }
+      .exp-company { font-size: 0.78rem; }
+      .exp-desc { font-size: 0.78rem; }
+      .project-item { padding: 0.8rem; }
+      .project-name { font-size: 0.85rem; }
+      .project-tech { font-size: 0.68rem; }
+      .project-desc-text { font-size: 0.76rem; }
+      .tech-chip { font-size: 0.7rem; padding: 0.2rem 0.5rem; }
+      .skill-label { font-size: 0.76rem; }
+      .cv-section-title { font-size: 0.65rem; }
+      .print-bar { padding: 0.6rem 1rem; }
+      .print-bar span { font-size: 0.75rem; display: none; }
+      .print-btn { font-size: 0.82rem; padding: 0.5rem 1rem; }
+    }
   </style>
 </head>
 <body>
@@ -408,7 +433,7 @@
         <div class="cv-section">
           <div class="cv-section-title"><i class="fas fa-user"></i> Profile</div>
           <p style="font-size:0.82rem;color:var(--muted);line-height:1.7">
-            Passionate Full Stack Developer with <strong>4+ years</strong> of experience building production-grade web applications. Currently working on NestJS microservices with Docker containerization.
+            Passionate Full Stack Developer with <strong>3+ years</strong> of experience building production-grade web applications. Currently pursuing <strong>MCA in AI & ML</strong> (Final Semester) and working on NestJS microservices with Docker containerization.
           </p>
         </div>
 
@@ -537,6 +562,17 @@
 
           <div class="exp-item">
             <div class="exp-header">
+              <div class="exp-title">Master of Computer Applications (MCA) — AI & ML</div>
+              <div class="exp-date">2025 — Present</div>
+            </div>
+            <div class="exp-company">Final Semester — Pursuing</div>
+            <div class="exp-desc">
+              Specializing in Artificial Intelligence and Machine Learning. Coursework includes deep learning, neural networks, data science, and intelligent system design.
+            </div>
+          </div>
+
+          <div class="exp-item">
+            <div class="exp-header">
               <div class="exp-title">Bachelor of Science — Computer Science</div>
               <div class="exp-date">2017 — 2021</div>
             </div>
@@ -552,27 +588,27 @@
           <div class="cv-section-title"><i class="fas fa-rocket"></i> Key Projects</div>
 
           <div class="project-item">
-            <div class="project-name">ISOnline</div>
+            <div class="project-name">Enterprise Web Portal</div>
             <div class="project-tech">Angular · ASP.NET Core · SQL Server · REST API</div>
             <div class="project-desc-text">Comprehensive online information system with real-time data processing, user management, role-based access control, and advanced reporting capabilities.</div>
           </div>
 
           <div class="project-item">
-            <div class="project-name">Eventopedia</div>
+            <div class="project-name">Event Management Platform</div>
             <div class="project-tech">React · Node.js · MongoDB · Payment Gateway</div>
             <div class="project-desc-text">Event management platform with ticket booking, event promotion, attendee management, and integrated payment gateway.</div>
           </div>
 
           <div class="project-item">
-            <div class="project-name">Living Menu</div>
+            <div class="project-name">Restaurant Menu Platform</div>
             <div class="project-tech">Angular · ASP.NET Core · SQL Server · Real-time</div>
             <div class="project-desc-text">Digital restaurant menu with real-time updates, online ordering, table reservation system, and customer feedback module.</div>
           </div>
 
           <div class="project-item" style="border-left-color:var(--accent)">
-            <div class="project-name" style="color:var(--accent)">Digital Pharmacy Microservices</div>
+            <div class="project-name" style="color:var(--accent)">Healthcare Microservices Platform</div>
             <div class="project-tech" style="color:#7c3aed">NestJS · Microservices · Docker · Prisma · PostgreSQL</div>
-            <div class="project-desc-text">Microservices-based digital pharmacy backend — catalog service, order service, and API gateway. Containerized with Docker Compose.</div>
+            <div class="project-desc-text">Microservices-based healthcare backend — catalog service, order service, and API gateway. Containerized with Docker Compose.</div>
           </div>
         </div>
 
@@ -581,10 +617,11 @@
           <div class="cv-section-title"><i class="fas fa-star"></i> Highlights</div>
           <div class="exp-desc">
             <ul>
-              <li>4+ years of professional full stack development experience</li>
+              <li>3+ years of professional full stack development experience</li>
               <li>Hands-on with NestJS microservices and Docker in production</li>
-              <li>Delivered 10+ complete web applications end-to-end</li>
+              <li>Delivered multiple complete web applications end-to-end</li>
               <li>Strong in both frontend (Angular/React) and backend (ASP.NET/NestJS)</li>
+              <li>Pursuing MCA in AI & ML — expanding into data science and intelligent systems</li>
               <li>Open to full-time / freelance opportunities</li>
             </ul>
           </div>
